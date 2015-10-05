@@ -2,6 +2,7 @@ package com.example.chat.client;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,10 +28,15 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     Button button_login, button_exit;
     public static final String IP_ADRESS = "10.0.2.2";                                              //主机ip
     public static final int PORT = 6000;                                                            //TCP端口
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Toast.makeText(LoginActivity.this, (String)msg.obj, Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, (String) msg.obj, Toast.LENGTH_SHORT).show();
+            if (((String)msg.obj).equals("登录成功")) {
+                Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
     };
 
@@ -77,7 +83,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         message.obj = "登录成功";
                         handler.sendMessage(message);
 //                        Log.d("asdf", "登录成功");
-                    }else{
+
+                    } else {
                         Message message = new Message();
                         message.obj = "用户或密码错误";
                         handler.sendMessage(message);
