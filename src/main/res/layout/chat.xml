@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/button_chat"
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:text="点 击 说 话"
         android:background="@drawable/button_chat_bg"
         android:layout_alignParentBottom="true"
